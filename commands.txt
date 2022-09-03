@@ -1,0 +1,27 @@
+git config --global user.email "alexander.s.delapaz@gmail.com"
+git config --global user.name "alexdelapaz"
+
+sudo apt-get install unzip
+unzip train_images_tiled_planes-20220902T170507Z-001.zip
+
+
+sudo service docker start
+sudo chmod 666 /var/run/docker.sock
+
+docker build -t detection .
+
+
+docker run -it --mount type=bind,source="$(pwd)"/,target=/workspace detection
+docker run -it --gpus all --mount type=bind,source="$(pwd)"/,target=/workspace detection
+
+
+# IF YOU NEEDED TO INSTALL PYCOCOTOOLS, DOCKERFILE DOES THIS NOW
+conda install -c conda-forge pycocotools
+
+
+
+
+
+python3 train_custom.py -d 'artifacts' -n 'planes_cli' -bs 4 -e 2 -s 2 -lr 0.005
+python3 analysis.py -d 'artifacts' -n 'planes_cli'
+python3 inference.py -d 'artifacts' -n 'planes_cli'
