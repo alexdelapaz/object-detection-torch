@@ -1,5 +1,5 @@
 ﻿# object-detection-torch
-'''
+```
 C:.
 │   .gitignore
 │   analysis.py
@@ -54,4 +54,4 @@ C:.
 └───vision
     │
     └───torchvision
-'''
+```
