@@ -1,4 +1,5 @@
 ﻿# object-detection-torch
+'''
 C:.
 │   .gitignore
 │   analysis.py
@@ -50,13 +51,7 @@ C:.
 │       trainer_depricated.py
 │       __init__.py
 │
-├───inference
-│       analysis.png
-│       ground_truth.png
-│       raw.png
-│       thresh_0.5.png
-│
 └───vision
     │
-    │
     └───torchvision
+'''
