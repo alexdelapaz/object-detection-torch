@@ -1,7 +1,9 @@
 ﻿# object-detection-torch
-[analysis.py](https://github.com/alexdelapaz/object-detection-torch/blob/main/analysis.py)
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://github.com/alexdelapaz/object-detection-torch/blob/main/object_detection_torch.ipynb)
 
 <span style="color:blue">some *blue* text</span>.
+[analysis.py](https://github.com/alexdelapaz/object-detection-torch/blob/main/analysis.py)
 
 <p align="center" width="100%">
 <img src="https://github.com/alexdelapaz/object-detection-torch/blob/main/datasets/xView/sample_analysis/Loss%20Graph.png" width="600">
