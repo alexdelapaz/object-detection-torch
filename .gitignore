@@ -3,4 +3,4 @@ artifacts/*
 
 # exception to the rule
 !artifacts/.gitkeep 
-!artifacts/planes_sgd/*
+!planes_sgd/.gitkeep 
