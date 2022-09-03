@@ -2,7 +2,7 @@
 ```
 object-detection-torch
 │   .gitignore
-│   '''[analysis.py]([https://www.google.com](https://github.com/alexdelapaz/object-detection-torch/blob/main/analysis.py))'''
+│   ```[analysis.py]([https://www.google.com](https://github.com/alexdelapaz/object-detection-torch/blob/main/analysis.py))```
 │   coco_eval.py
 │   coco_utils.py
 │   commands.txt
