@@ -3,4 +3,8 @@ artifacts/*
 
 # exception to the rule
 !artifacts/.gitkeep
+<<<<<<< HEAD
 !artifacts/planes_sgd/analysis/
+=======
+!artifacts/planes_sgd/analysis/*
+>>>>>>> 21406c390b423fcd1425b0e310289795752360a9
