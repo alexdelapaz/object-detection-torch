@@ -21,11 +21,17 @@ If you wish to manually run the python program to perform the same training cycl
 - `python3 train_custom.py -d 'artifacts' -n 'planes_sgd' -bs 4 -e 20 -s 5 -lr 0.005`
 
 `-d` is the directory `artifacts`
+
 `-n` is the `name` of the experiment and a `subfolder` within `artifacts` that represents all the saved info to organize the `training strategy`
+
 `-bs` is the batch size (`4` is used and tested to work with an NVIDIA P100 12gb VRAM)
+
 `-e` 20 epochs were ran for the example training run.
+
 `-s` is the `save frequency` that evaluation is performed on the test set and the model info is saved.
+
 `-lr` is the `learning rate` for the optimizer (0.0001 is used here for Stochastic Gradient Descent)
+
 `-o` is the `optimizer` (sgd is used for better generalization, adam is the other option)
 
 <br/>
