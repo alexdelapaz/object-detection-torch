@@ -1,2 +1,5 @@
-/datasets
-/artifacts/*
+# exclude everything
+artifacts/*
+
+# exception to the rule
+!artifacts/.gitkeep 
