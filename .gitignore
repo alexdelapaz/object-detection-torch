@@ -1,6 +1,6 @@
 # exclude everything
-artifacts/
+artifacts/*
 
 # exception to the rule
-!artifacts/.gitkeep 
-!artifacts/planes_sgd/
+!artifacts/.gitkeep
+!artifacts/planes_sgd/analysis/

@@ -1,10 +1,3 @@
-﻿# object-detection-torch
-[analysis.py](https://github.com/alexdelapaz/object-detection-torch/blob/main/analysis.py)
-
-<span style="color:blue">some *blue* text</span>.
-
-
-```
 object-detection-torch
 │   analysis.py
 │   commands.txt
@@ -40,4 +33,3 @@ object-detection-torch
         models.py
         setup.py
         trainer.py
-```

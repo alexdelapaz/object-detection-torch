@@ -154,6 +154,6 @@ if __name__ == '__main__':
 	labeled_img_annots = torchvision.utils.draw_bounding_boxes(img_label, target['boxes'], labels_ground_truth, colors='#D627D6')
 
 	print('\n-------------------------------------------------------------------------------')
-	print('Saving {} artifacts to: {}'.format(EXP_NAME, SAVE_PATH), end='\n')
+	print('Saving {} artifacts to: {}/{}/'.format('detection', SAVE_PATH, 'analysis'), end='\n')
 	print('-------------------------------------------------------------------------------\n')
 	save_img_plot(labeled_img_annots, 'ground_truth', SAVE_PATH)

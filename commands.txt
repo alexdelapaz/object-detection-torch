@@ -22,6 +22,6 @@ conda install -c conda-forge pycocotools
 
 
 
-python3 train_custom.py -d 'artifacts' -n 'planes_cli' -bs 4 -e 2 -s 2 -lr 0.005
-python3 analysis.py -d 'artifacts' -n 'planes_cli'
-python3 detections.py -d 'artifacts' -n 'planes_cli'
+python3 train_custom.py -d 'artifacts' -n 'planes_sgd' -bs 4 -e 20 -s 5 -lr 0.005
+python3 analysis.py -d 'artifacts' -n 'planes_sgd'
+python3 detections.py -d 'artifacts' -n 'planes_sgd'

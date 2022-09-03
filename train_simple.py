@@ -1,10 +1,11 @@
 import torchvision.transforms as T
 from engine import train_one_epoch, evaluate
 import utils
-from syngen import data, models, trainer
 import os
 import pathlib
- 
+
+from detection import data, models, trainer
+
 # current working directory
 dir_working = pathlib.Path().absolute()
 print(dir_working)
