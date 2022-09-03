@@ -1,7 +1,7 @@
 
 # exception to the rule
 !artifacts/.gitkeep 
-!artifacts/planes_sgd/*
+!artifacts/planes_sgd/
 
 # exclude everything
 artifacts/*
