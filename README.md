@@ -1,9 +1,8 @@
 ﻿# object-detection-torch
 [analysis.py](https://github.com/alexdelapaz/object-detection-torch/blob/main/analysis.py)
 
-<p style="background-color: steelblue">
-I am using a color name to assign a color to this text
-</p>
+<span style="color:blue">some *blue* text</span>.
+
 
 ```
 object-detection-torch
