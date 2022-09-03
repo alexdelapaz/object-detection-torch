@@ -6,21 +6,12 @@
 
 ```
 object-detection-torch
-│   .gitignore
-│   [analysis.py](https://github.com/alexdelapaz/object-detection-torch/blob/main/analysis.py)
-│   coco_eval.py
-│   coco_utils.py
+│   analysis.py
 │   commands.txt
-│   `detections.py`
+│   detections.py
 │   Dockerfile
-│   engine.py
-│   folder_structure.txt
-│   README.md
-│   `run_training.sh`
-│   `train_custom.py`
-│   train_simple.py
-│   transforms.py
-│   utils.py
+│   run_training.sh
+│   train_custom.py
 │
 ├───artifacts
 │   │   .gitkeep
@@ -38,12 +29,10 @@ object-detection-torch
 │       └───weights_at_eval
 │               .gitkeep
 │               20_epochs
-│
 ├───datasets
 │   └───xView
 │       ├───images
 │       │   └───train_images_tiled_planes
-│       │
 │       └───labels
 │               coco_planes.pkl
 └───detection
@@ -51,6 +40,4 @@ object-detection-torch
         models.py
         setup.py
         trainer.py
-        trainer_depricated.py
-        __init__.py
 ```
