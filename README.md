@@ -1,6 +1,6 @@
 ﻿# object-detection-torch
 ```
-C:.
+object-detection-torch
 │   .gitignore
 │   analysis.py
 │   coco_eval.py
@@ -34,8 +34,6 @@ C:.
 │               .gitkeep
 │               20_epochs
 │
-├───cocoapi-master
-│
 ├───datasets
 │   └───xView
 │       ├───images
@@ -43,15 +41,11 @@ C:.
 │       │
 │       └───labels
 │               coco_planes.pkl
-├───detection
-│       data.py
-│       models.py
-│       setup.py
-│       trainer.py
-│       trainer_depricated.py
-│       __init__.py
-│
-└───vision
-    │
-    └───torchvision
+└───detection
+        data.py
+        models.py
+        setup.py
+        trainer.py
+        trainer_depricated.py
+        __init__.py
 ```
