@@ -2,4 +2,5 @@
 artifacts/*
 
 # exception to the rule
-!artifacts/.gitkeep 
+!artifacts/.gitkeep
+!artifacts/planes_sgd/analysis/*
