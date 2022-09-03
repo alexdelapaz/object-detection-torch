@@ -1,8 +1,10 @@
 ﻿# object-detection-torch
 [analysis.py](https://github.com/alexdelapaz/object-detection-torch/blob/main/analysis.py)
-<h2 style="color: pink;">
+
+<p style="color: pink;">
 I am using a color name to assign a color to this text
-</h2>
+</p>
+
 ```
 object-detection-torch
 │   .gitignore
