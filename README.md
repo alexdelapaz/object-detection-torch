@@ -2,17 +2,17 @@
 ```
 object-detection-torch
 │   .gitignore
-│   analysis.py
+│   `analysis.py`
 │   coco_eval.py
 │   coco_utils.py
 │   commands.txt
-│   detections.py
+│   `detections.py`
 │   Dockerfile
 │   engine.py
 │   folder_structure.txt
 │   README.md
-│   run_training.sh
-│   train_custom.py
+│   `run_training.sh`
+│   `train_custom.py`
 │   train_simple.py
 │   transforms.py
 │   utils.py
