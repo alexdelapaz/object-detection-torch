@@ -1,8 +1,12 @@
 ﻿# object-detection-torch
+[analysis.py](https://github.com/alexdelapaz/object-detection-torch/blob/main/analysis.py)
+
 ```
 object-detection-torch
 │   .gitignore
+```
 │   [analysis.py](https://github.com/alexdelapaz/object-detection-torch/blob/main/analysis.py)
+```
 │   coco_eval.py
 │   coco_utils.py
 │   commands.txt
