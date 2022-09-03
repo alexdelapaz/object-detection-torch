@@ -1,18 +1,26 @@
 ﻿# PyTorch Torchvision Object Detection for Satellite Imagery
 ## Author [Alex de la Paz](http://www.alexdelapaz.com)
 
-#### The code can be opened directly in Colab and commands are setup [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexdelapaz/object-detection-torch/blob/main/object_detection_torch.ipynb)
+## (Option 1) The code can be opened directly in Colab and commands are setup [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexdelapaz/object-detection-torch/blob/main/object_detection_torch.ipynb)
 
+
+## (Option 2) Run the object detection training on Linux:
 #### Additionally pulling the repo to a workstation that has an NVIDIA enabled GPU, GPU Driver, and NVIDIA container toolkit.
-- enter `./run_build.sh` within the `object-detection-torch folder` to pull and build the container image
-- enter `./run_training.sh` to run an automated training detailed below
 
-### Training
+## Clone the repo:
+- `! git clone https://github.com/alexdelapaz/object-detection-torch`
+
+## Pull and Run the container:
+- enter `./run_build.sh` within the `object-detection-torch folder` to pull and build the container image
+- enter `./run_training.sh` to run an the object detection training container
+
+## Run the training program within the container:
 If you wish to manually run the python program to perform the same training cycle as the automated bash script here is an example:
 - `python3 train_custom.py -d 'artifacts' -n 'planes_sgd' -bs 4 -e 20 -s 5 -lr 0.005`
 
+<br/>
 
-### This repository is a light framework for object detection using [ Torchvision FasterRCNN](https://pytorch.org/vision/stable/models/faster_rcnn.html)
+## This repository is a light framework for object detection using [ Torchvision FasterRCNN](https://pytorch.org/vision/stable/models/faster_rcnn.html)
 
 The code used here can be extended to use other labeled datasets if PyTorch dataset classes are created to ingest the annotations in the format the model (FasterRCNN here) requires.
 
