@@ -30,7 +30,7 @@ If you wish to manually run the python program to perform the same training cycl
 
 `-s` is the `save frequency` that evaluation is performed on the test set and the model info is saved.
 
-`-lr` is the `learning rate` for the optimizer (0.0001 is used here for Stochastic Gradient Descent)
+`-lr` is the `learning rate` for the optimizer (0.005 is used here for Stochastic Gradient Descent)
 
 `-o` is the `optimizer` (sgd is used for better generalization, adam is the other option)
 
