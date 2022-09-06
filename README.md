@@ -2,7 +2,7 @@
 ## Author [Alex de la Paz](http://www.alexdelapaz.com)
 
 ## Neural Network code:
-This repository is a containerized environment, light framework of tools which use a python package I created named `detection` that extends [Torchvision FasterRCNN](https://pytorch.org/vision/stable/models/faster_rcnn.html) for object detection training, analysis, and simple inference as an example.
+This repository is a containerized environment and a python package I created named `detection` that extends [Torchvision FasterRCNN](https://pytorch.org/vision/stable/models/faster_rcnn.html) for object detection training, analysis, and simple inference as an example.
 
 The code used here can be extended to use other labeled datasets if PyTorch dataset classes are created to ingest the annotations in the format the model (FasterRCNN here) requires.
 
