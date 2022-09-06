@@ -67,7 +67,7 @@ object-detection-torch
 ## Build the deep learning dockerized environment
 
 ### Clone the repo:
-- `! git clone https://github.com/alexdelapaz/object-detection-torch`
+- `git clone https://github.com/alexdelapaz/object-detection-torch`
 
 
 <br/>
