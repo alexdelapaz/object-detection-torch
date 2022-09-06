@@ -1,14 +1,19 @@
 ﻿# PyTorch Torchvision Object Detection for Satellite Imagery
 ## Author [Alex de la Paz](http://www.alexdelapaz.com)
 
-### This repository is a containerized environment, light framework of tools which use a python package I created named `detection` that extends [ Torchvision FasterRCNN](https://pytorch.org/vision/stable/models/faster_rcnn.html) for object detection training, analysis, and simple inference as an example.
+## Neural Network code:
+This repository is a containerized environment, light framework of tools which use a python package I created named `detection` that extends [Torchvision FasterRCNN](https://pytorch.org/vision/stable/models/faster_rcnn.html) for object detection training, analysis, and simple inference as an example.
 
 The code used here can be extended to use other labeled datasets if PyTorch dataset classes are created to ingest the annotations in the format the model (FasterRCNN here) requires.
 
-A subset of xView categories are used (3 in total) to include {'Small Aircraft', 'Fixed-Wing', 'Cargo Plane'}
+## Data:
+A subset of the [xView Dataset](http://xviewdataset.org/) categories are used (3 in total) to include {`Small Aircraft`, `Fixed-Wing`, `Cargo Plane`}
 
-Considerations for the example dataset are training on a personal GPU such as a V100 available in Colab or consumer NVIDIA Geforce graphics cards.
-## The notable `object-detection-torch` folders and files utilized in the readme
+`Space complexity considerations` are the batch size and overall dataset sample size training on a personal GPU such as a P100 available in Colab or consumer NVIDIA Geforce graphics cards.
+
+`Deep learning network training considerations` are the dataset is small (`420 samples`). It is used as an example dataset. Further training can be extended and done with this set of tools easily. Training the full xView would require multiple GPUs or a very long training run with a P100 to achieve reasonable results. The dataset allows enough examples for the network to converge, but not enough for high accuracy without some weighted sampling or synthetic augmentation of the data.
+
+## The notable `object-detection-torch` folders and files mentioned in the readme.
 ```
 object-detection-torch
 │   analysis.py
