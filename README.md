@@ -76,10 +76,27 @@ object-detection-torch
 ### Build and Run the container:
 
 #### Running `run_build.sh`
+- set `object-detection-torch` as the current working directory
 - enter `./run_build.sh` within the `object-detection-torch folder` to pull and build the container image
 
 #### Running `run_container.sh`
-- enter `./run_container.sh` to run an the object detection training container
+- (the shell script that starts the container passes a reference to the `current working directory` which should be `object-detection-torch`)
+- enter `./run_container.sh` to run the object detection training container
+
+<br/>
+
+<hr/>
+NOTE: this is a deep learning container intended for computer vision (which is time prohibitive to run on cpu)
+
+- the container can be run with a cpu, the example dataset will take more than a few minutes to perform one epoch of training
+- the bash script runs the docker container with `--gpus all`
+
+To run the container on a system that does not have a gpu available the docker arg `--gpus all` can be removed
+
+- docker run -it `--gpus all` --mount type=bind,source="$(pwd)"/,target=/workspace detection
+- docker run -it --mount type=bind,source="$(pwd)"/,target=/workspace detection
+- use `ctrl+c` to exit the training loop if testing on a cpu becomes time prohibitive
+<hr/>
 
 <br/>
 
