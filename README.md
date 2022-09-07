@@ -93,8 +93,7 @@ NOTE: this is a deep learning container intended for computer vision (which is t
 
 To run the container on a system that does not have a gpu available the docker arg `--gpus all` can be removed
 
-- docker run -it `--gpus all` --mount type=bind,source="$(pwd)"/,target=/workspace detection
-- docker run -it --mount type=bind,source="$(pwd)"/,target=/workspace detection
+- `docker run -it --mount type=bind,source="$(pwd)"/,target=/workspace detection`
 - use `ctrl+c` to exit the training loop if testing on a cpu becomes time prohibitive
 <hr/>
 
