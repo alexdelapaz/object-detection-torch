@@ -7,7 +7,7 @@ This repository is a containerized environment and a python package I created na
 The code used here can be extended to use other labeled datasets if PyTorch dataset classes are created to ingest the annotations in the format the model (FasterRCNN here) requires.
 
 ## Data:
-A subset of the [xView Dataset](http://xviewdataset.org/) categories are used (3 in total) to include {`Small Aircraft`, `Fixed-Wing`, `Cargo Plane`}
+A subset of the [xView Dataset](https://github.com/DIUx-xView/xView1_baseline) categories are used (3 in total) to include {`Small Aircraft`, `Fixed-Wing`, `Cargo Plane`}
 
 `Space complexity considerations` are the batch size and overall dataset sample size training on a personal GPU such as a P100 available in Colab or consumer NVIDIA Geforce graphics cards.
 
