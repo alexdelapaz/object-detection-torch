@@ -9,7 +9,7 @@ The code used here can be extended to use other labeled datasets if PyTorch data
 ## Data:
 A subset of the [xView Dataset](https://github.com/DIUx-xView/xView1_baseline) categories are used (3 in total) to include {`Small Aircraft`, `Fixed-Wing`, `Cargo Plane`}
 
-`Space complexity considerations` are the batch size and overall dataset sample size training on a personal GPU such as a P100 available in Colab or consumer NVIDIA Geforce graphics cards.
+`Space complexity considerations` are the batch size and overall dataset sample size training on a personal GPU such as a P100 available in Colab or consumer NVIDIA Geforce graphics cards. A `batch size of 4` is used for the torch dataloader for the example training run and dataset.
 
 `Deep learning network training considerations` are the dataset is small (`420 samples`). It is used as an example dataset. Further training can be extended and done with this set of tools easily. Training the full xView would require multiple GPUs or a very long training run with a P100 to achieve reasonable results. The dataset allows enough examples for the network to converge, but not enough for high accuracy without some weighted sampling or synthetic augmentation of the data.
 
