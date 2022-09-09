@@ -18,9 +18,9 @@ def fasterrcnn(model, model_path, data_loaders, epoch_count, freq_eval_save, lr=
     current_epoch = 0
 
     # Loss monitoring initialization
-    lowest_val_loss = 99999999
     lowest_train_loss = 99999999
-    
+    lowest_val_loss = 99999999
+
     # Prior training weights and information
     if os.path.exists(model_path):
         # Stored model information
@@ -123,23 +123,28 @@ def fasterrcnn(model, model_path, data_loaders, epoch_count, freq_eval_save, lr=
 
             eval_per_n_epoch.append(eval_data)
 
+        # Display lowest training loss
+        if epoch_train_loss < lowest_train_loss:
+            lowest_train_loss = epoch_train_loss
+        print(f'Lowest train loss: {lowest_train_loss}')
         
-        ### Save Out ###
+        # Display lowest validation loss
+        # Save best weights if validation is lowest validation so far
         if epoch_val_loss < lowest_val_loss:
             best_model_weights = copy.deepcopy(model.state_dict())
-            lowest_train_loss = epoch_train_loss
-            print(f'Lowest val loss: {lowest_train_loss}')
+            lowest_val_loss = epoch_val_loss
+        print(f'Lowest val loss: {lowest_val_loss}')
 
         # Model information
         model_info = {'weights': best_model_weights,
                       'epochs_trained': epoch + 1,
                       'least_train_loss': lowest_train_loss,
-                      'least_val_loss': epoch_val_loss,
+                      'least_val_loss': lowest_val_loss,
                       'losses_train': losses_train,
                       'losses_val': losses_val,
                       'evals': eval_per_n_epoch}
 
-        # Save the model for each eval conducted
+        # Save the model information and best weights so far (from above val save) for each eval conducted
         if epoch > 0:
             if epoch % freq_eval_save == (freq_eval_save-1):
                 model_path_eval = weights_at_eval + f'{epoch+1}_epochs'
