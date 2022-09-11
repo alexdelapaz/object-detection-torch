@@ -69,8 +69,8 @@ if __name__ == '__main__':
 	test_count = int(total_count*test_percent)
 	train_count = int(total_count-test_count)
     # Split data into train and test sets, the hard coded 20% samples are used for eval
-	coco_dataset_train = coco_dataset[:train_count]
-	coco_dataset_test = coco_dataset[-test_count:]
+	coco_dataset_train = coco_dataset[:2]#[:train_count]
+	coco_dataset_test = coco_dataset[-2:]#[-test_count:]
 
     # Create torch dataset object for coco annotations, subset of xView coco dataset is used for planes example
 	torchvision_ds_train = data.COCO_Dataset(coco_dataset_train, get_transform(train=True))

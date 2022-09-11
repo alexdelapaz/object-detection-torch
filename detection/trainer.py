@@ -89,6 +89,8 @@ def fasterrcnn(model, model_path, data_loaders, epoch_count, freq_eval_save, lr=
             
             # Calculate loss 
             loss_dict = model(imgs, annotations)
+            print('type', type(loss_dict))
+            print(loss_dict)
             losses = sum(loss for loss in loss_dict.values())
             epoch_train_losses.append(losses.cpu().detach().numpy())
 
@@ -114,7 +116,10 @@ def fasterrcnn(model, model_path, data_loaders, epoch_count, freq_eval_save, lr=
             # Calculate loss
             with torch.no_grad():
                 loss_dict = model(imgs, annotations)
-            losses = sum(loss for loss in loss_dict)#.values())
+                print('type', type(loss_dict))
+                print(loss_dict)
+            losses = sum(loss for loss in loss_dict.values())
+            #losses = sum(loss for loss in loss_dict)
             epoch_val_losses.append(losses.cpu().detach().numpy())
 
         # Val epoch done
