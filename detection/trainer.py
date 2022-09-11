@@ -84,15 +84,16 @@ def fasterrcnn(model, model_path, data_loaders, epoch_count, freq_eval_save, lr=
             epoch_train_losses.append(losses.cpu().detach().numpy())
 
             # Backprop
-            optimizer.zero_grad()
             losses.backward()
             optimizer.step()
-        
+            optimizer.zero_grad()
+
         # Train epoch done
         epoch_train_loss = np.mean(epoch_train_losses)
         losses_train.append(epoch_train_loss)
         
         ### Validation ###
+        model.eval()
         epoch_val_losses = []
         # Process all data in the data loader 
         for imgs, annotations in tqdm(val_loader, desc = 'Validation'):
@@ -101,7 +102,7 @@ def fasterrcnn(model, model_path, data_loaders, epoch_count, freq_eval_save, lr=
             imgs = list(img.to(device) for img in imgs)
             annotations = [{k: v.to(device) for k, v in t.items()} for t in annotations]
             
-            # Calculate loss 
+            # Calculate loss
             with torch.no_grad():
                 loss_dict = model(imgs, annotations)
             losses = sum(loss for loss in loss_dict.values())
