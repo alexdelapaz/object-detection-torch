@@ -77,6 +77,7 @@ def fasterrcnn(model, model_path, data_loaders, epoch_count, freq_eval_save, lr=
     for epoch in range(current_epoch, epoch_count):
         
         print(f'\nTraining [epoch {epoch + 1}]:\tout of {epoch_count}')
+        
         ### Training ###
         model.train()
         epoch_train_losses = []
@@ -104,7 +105,7 @@ def fasterrcnn(model, model_path, data_loaders, epoch_count, freq_eval_save, lr=
         losses_train.append(epoch_train_loss)
         
         ### Validation ###
-        model.eval()
+        #model.eval()
         epoch_val_losses = []
         # Process all data in the data loader 
         for imgs, annotations in tqdm(val_loader, desc = 'Validation'):
