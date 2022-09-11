@@ -1,10 +1,20 @@
 import torch
 import torchvision.transforms as T
-from engine import train_one_epoch, evaluate
-import utils
 import os
 import pathlib
 import argparse
+import sys
+
+# adding torchvision vision tools folder to import modules
+notebook_folders = ['vision/']
+for folder in notebook_folders:
+    sys.path.append(folder)
+
+#sys.path.insert(0, '/vision')
+
+# Import torchvision vision folder scripts
+from engine import train_one_epoch, evaluate
+import utils
 
 from detection import data, models, trainer
 

@@ -1,11 +1,20 @@
 import pickle 
 import torch
-from engine import train_one_epoch, evaluate
 import utils
 from tqdm import tqdm
 import numpy as np
 import os
 import copy
+import sys
+
+# adding torchvision vision tools folder to import modules
+notebook_folders = ['/vision/']
+for folder in notebook_folders:
+    sys.path.append(folder)
+
+#sys.path.insert(0, '/vision')
+
+from engine import evaluate
 
 
 def fasterrcnn(model, model_path, data_loaders, epoch_count, freq_eval_save, lr=0.0001, opt='sgd'):
@@ -105,7 +114,7 @@ def fasterrcnn(model, model_path, data_loaders, epoch_count, freq_eval_save, lr=
             # Calculate loss
             with torch.no_grad():
                 loss_dict = model(imgs, annotations)
-            losses = sum(loss for loss in loss_dict.values())
+            losses = sum(loss for loss in loss_dict)#.values())
             epoch_val_losses.append(losses.cpu().detach().numpy())
 
         # Val epoch done

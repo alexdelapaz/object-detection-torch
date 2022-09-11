@@ -60,7 +60,6 @@ object-detection-torch
 # (Option 2) Run the object detection training on Linux:
 #### Clone the repo to a workstation that has an NVIDIA enabled GPU, GPU Driver, and NVIDIA container toolkit.
 
-
 <br/>
 
 
@@ -68,7 +67,6 @@ object-detection-torch
 
 ### Clone the repo:
 - `git clone https://github.com/alexdelapaz/object-detection-torch`
-
 
 <br/>
 
@@ -85,6 +83,7 @@ object-detection-torch
 
 <br/>
 
+
 <hr/>
 NOTE: this is a deep learning container intended for computer vision (which is time prohibitive to run on cpu)
 
@@ -98,6 +97,7 @@ To run the container on a system that does not have a gpu available the docker a
 <hr/>
 
 <br/>
+
 
 ## Training the object detection network
 
@@ -126,7 +126,6 @@ Perform the same training cycle as the automated bash script `run_training.sh` w
 - `-lr` is the `learning rate` for the optimizer (0.005 is used here for Stochastic Gradient Descent)
 
 - `-o` is the `optimizer` (sgd is used for better generalization, adam is the other option)
-
 
 <br/>
 
@@ -169,4 +168,3 @@ Run the `analysis.py` and `detections.py` python programs to perform the analysi
         </tr>
     </table>
 </div>
-
