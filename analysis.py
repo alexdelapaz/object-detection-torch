@@ -38,12 +38,24 @@ def run_analysis(artifacts_path):
       print('Validation loss:\t{}'.format(losses_val), end ='\n\n')
 
 
+
+      losses_val_NEW = model_info['losses_val_NEW']
+      print('Validation loss:\t{}'.format(losses_val), end ='\n\n')
+
+
+
       # Prior lowest loss for training and validation
       lowest_train_loss = min(losses_train)
       print('Lowest Training loss:\t{}'.format(lowest_train_loss), end ='\n\n')
 
       lowest_val_loss = min(losses_val)
       print('Lowest Validation loss:\t{}'.format(lowest_val_loss), end ='\n\n')
+
+
+
+      lowest_val_loss = min(losses_val_NEW)
+      print('Lowest Validation loss NEW:\t{}'.format(lowest_val_loss), end ='\n\n')
+
 
 
       evals = model_info['evals']
@@ -54,6 +66,7 @@ def run_analysis(artifacts_path):
 
       plt.plot(losses_train, color='#00FF00')
       plt.plot(losses_val, color='#4b0082')
+      plt.plot(losses_val_NEW, color='Red')
       plt.title('FasterRCNN_ResNet50 loss over {} epochs'.format(current_epoch))
       plt.ylabel('Loss')
       plt.xlabel('Epoch')

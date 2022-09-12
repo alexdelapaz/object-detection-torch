@@ -1,1 +1,2 @@
-docker build -t detection .
+cd Docker
+docker build -t newnew .
