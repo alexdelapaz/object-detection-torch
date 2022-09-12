@@ -8,8 +8,17 @@ import matplotlib.pyplot as plt
 import os
 import random
 import argparse
+import sys
 
 from detection import data, models
+
+# adding torchvision vision tools folder to import modules
+notebook_folders = ['vision/references/detection']
+for folder in notebook_folders:
+    sys.path.append(folder)
+
+#sys.path.insert(0, '/vision')
+
 
 # Define transforms
 def get_transform(train):

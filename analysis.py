@@ -1,8 +1,18 @@
 import torch
 import os
 import matplotlib.pyplot as plt
-from engine import evaluate
 import argparse
+import sys
+
+# adding torchvision vision tools folder to import modules
+notebook_folders = ['vision/references/detection']
+for folder in notebook_folders:
+    sys.path.append(folder)
+
+#sys.path.insert(0, '/vision')
+
+from engine import evaluate
+
 
 # Define analysis function
 def run_analysis(artifacts_path):
