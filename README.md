@@ -54,7 +54,7 @@ object-detection-torch
 
 
 # (Option 1) The code can be opened directly in Colab and commands are setup
-#### Open the ipynb included to work in Colab [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexdelapaz/object-detection-torch/blob/main/object_detection_torch.ipynb)
+#### Open the ipynb included to work in Colab [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/alexdelapaz/object-detection-torch/blob/main/detection/object_detection_torch.ipynb)
 
 
 # (Option 2) Run the object detection training on Linux:
