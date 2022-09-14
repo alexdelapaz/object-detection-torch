@@ -24,7 +24,7 @@ def fasterrcnn(model, model_path, data_loaders, epoch_count, freq_eval_save, lr=
     # Training info capture
     losses_train = []
     losses_val = []
-    losses_val_NEW = []
+    '''losses_val_NEW = []'''
     eval_per_n_epoch = []
     best_model_weights = model.state_dict()
     current_epoch = 0
@@ -48,7 +48,7 @@ def fasterrcnn(model, model_path, data_loaders, epoch_count, freq_eval_save, lr=
         # Prior training run losses
         losses_train = model_info['losses_train']
         losses_val = model_info['losses_val']
-        losses_val_NEW = model_info['losses_val']
+        '''losses_val_NEW = model_info['losses_val']'''
 
         # Prior lowest loss for training and validation
         lowest_train_loss = min(losses_train)
@@ -106,15 +106,8 @@ def fasterrcnn(model, model_path, data_loaders, epoch_count, freq_eval_save, lr=
         epoch_train_loss = np.mean(epoch_train_losses)
         losses_train.append(epoch_train_loss)
         
-        ### Validation ###
-        epoch_val_loss = models.frcnn_evaluate_loss(model, val_loader, device)
-        losses_val_NEW.append(epoch_val_loss)
-
-
-
 
         ### Validation ###
-        model.train()
         epoch_val_losses = []
         # Process all data in the data loader 
         for imgs, annotations in tqdm(val_loader, desc = 'Validation'):
@@ -127,7 +120,6 @@ def fasterrcnn(model, model_path, data_loaders, epoch_count, freq_eval_save, lr=
             with torch.no_grad():
                 loss_dict = model(imgs, annotations)
             losses = sum(loss for loss in loss_dict.values())
-            #losses = sum(loss for loss in loss_dict)
             epoch_val_losses.append(losses.cpu().detach().numpy())
 
         # Val epoch done
@@ -135,10 +127,13 @@ def fasterrcnn(model, model_path, data_loaders, epoch_count, freq_eval_save, lr=
         losses_val.append(epoch_val_loss)
 
 
-
-
-
-
+        # Implementation of FasterRCNN in eval mode to calculate loss for validation
+        '''
+        with torch.no_grad():
+            ### Validation ###
+            epoch_val_loss = models.frcnn_evaluate_loss(model, val_loader, device)
+            losses_val_NEW.append(epoch_val_loss)
+        '''
 
 
         # Eval per freq_eval_save
@@ -149,7 +144,6 @@ def fasterrcnn(model, model_path, data_loaders, epoch_count, freq_eval_save, lr=
             
             # evaluate on the test dataset
             eval_data = evaluate(model, val_loader, device=device)
-
             eval_per_n_epoch.append(eval_data)
 
         # Display lowest training loss
@@ -171,7 +165,7 @@ def fasterrcnn(model, model_path, data_loaders, epoch_count, freq_eval_save, lr=
                       'least_val_loss': lowest_val_loss,
                       'losses_train': losses_train,
                       'losses_val': losses_val,
-                      'losses_val_NEW': losses_val_NEW,
+                      #'losses_val_NEW': losses_val_NEW,'
                       'evals': eval_per_n_epoch}
 
         # Save the model information and best weights so far (from above val save) for each eval conducted
@@ -185,8 +179,5 @@ def fasterrcnn(model, model_path, data_loaders, epoch_count, freq_eval_save, lr=
         #  Save artifacts and model
         torch.save(model_info, model_path)
         torch.save(model, model_path+'.pt')
-
-        print(losses_val)
-        print(losses_val_NEW)
     
     return losses_train

@@ -74,7 +74,7 @@ if __name__ == '__main__':
 
     # Create torch dataset object for coco annotations, subset of xView coco dataset is used for planes example
 	torchvision_ds_train = data.COCO_Dataset(coco_dataset_train, get_transform(train=True))
-	torchvision_ds_test = data.COCO_Dataset(coco_dataset_test, get_transform(train=True))
+	torchvision_ds_test = data.COCO_Dataset(coco_dataset_test, get_transform(train=False))
 
 	# define training and validation data loaders
 	dl_train = torch.utils.data.DataLoader(
