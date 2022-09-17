@@ -98,9 +98,9 @@ def fasterrcnn(model, model_path, data_loaders, epoch_count, freq_eval_save, lr=
             epoch_train_losses.append(losses.cpu().detach().numpy())
 
             # Backprop
+            optimizer.zero_grad()
             losses.backward()
             optimizer.step()
-            optimizer.zero_grad()
 
         # Train epoch done
         epoch_train_loss = np.mean(epoch_train_losses)

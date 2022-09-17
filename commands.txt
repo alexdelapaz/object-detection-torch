@@ -14,8 +14,12 @@ docker run -it --mount type=bind,source="$(pwd)"/,target=/workspace detection
 docker run -it --gpus all --mount type=bind,source="$(pwd)"/,target=/workspace detection
 
 
-# IF YOU NEEDED TO INSTALL PYCOCOTOOLS, DOCKERFILE DOES THIS NOW
+# TO INSTALL PYCOCOTOOLS, DOCKERFILE DOES THIS NOW
 conda install -c conda-forge pycocotools
+# !pip install pycocotools --quiet
+
+# TO INSTALL TORCHVISION
+!git clone https://github.com/pytorch/vision.git
 
 
 python3 train_custom.py -d 'artifacts' -n 'planes_sgd' -bs 4 -e 20 -s 5 -lr 0.005
