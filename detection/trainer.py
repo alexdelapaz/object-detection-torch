@@ -10,7 +10,7 @@ import sys
 from detection import models
 
 # adding torchvision vision tools folder to import modules
-notebook_folders = ['vision/references/detection']
+notebook_folders = ['vision/references/detection', '/content/drive/My Drive/Colab Notebooks/']
 for folder in notebook_folders:
     sys.path.append(folder)
 
