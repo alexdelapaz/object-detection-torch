@@ -48,7 +48,7 @@ def fasterrcnn(model, model_path, data_loaders, epoch_count, freq_eval_save, lr=
         # Prior training run losses
         losses_train = model_info['losses_train']
         losses_val = model_info['losses_val']
-        losses_val_NEW = model_info['losses_val']
+        losses_val_NEW = model_info['losses_val_NEW']
 
         # Prior lowest loss for training and validation
         lowest_train_loss = min(losses_train)
@@ -82,7 +82,8 @@ def fasterrcnn(model, model_path, data_loaders, epoch_count, freq_eval_save, lr=
         
         print(f'\nTraining [epoch {epoch + 1}]:\tout of {epoch_count}')
         
-        ### Training ###
+        # Perform foward pass, backpropagation, zero gradients
+        # Calculate training loss for one eppoch, add training loss to total training loss and store in log
         model.train()
         epoch_train_losses = []
         # Process all data in the data loader 
@@ -107,7 +108,9 @@ def fasterrcnn(model, model_path, data_loaders, epoch_count, freq_eval_save, lr=
         losses_train.append(epoch_train_loss)
         
 
-        ### Validation ###
+        # Perform foward pass, backpropagation, zero gradients
+        # Calculate training loss for one eppoch, add training loss to total training loss and store in log
+        # model.eval() will not work as usually intended for torchvision FRCNN due to inference outputs
         epoch_val_losses = []
         # Process all data in the data loader 
         for imgs, annotations in tqdm(val_loader, desc = 'Validation'):
@@ -128,7 +131,8 @@ def fasterrcnn(model, model_path, data_loaders, epoch_count, freq_eval_save, lr=
 
 
         # Implementation of FasterRCNN in eval mode to calculate loss for validation
-        
+        # Perform foward pass, backpropagation, zero gradients
+        # Calculate training loss for one eppoch, add training loss to total training loss and store in log
         with torch.no_grad():
             ### Validation ###
             epoch_val_loss = models.frcnn_evaluate_loss(model, val_loader, device)

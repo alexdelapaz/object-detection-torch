@@ -4,9 +4,15 @@ from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
 def load_fasterrcnn(num_classes):
 
 	# load a model pre-trained on COCO
+	#torch.load('fasterrcnn_resnet50_fpn_coco-258fb6c6.pth')
+	#model = torchvision.models.detection.fasterrcnn_resnet50_fpn(weights="DEFAULT")
 	model = torchvision.models.detection.fasterrcnn_resnet50_fpn(weights="DEFAULT")
+	#model = torchvision.models.detection.fasterrcnn_resnet50_fpn(weights=FasterRCNN_ResNet50_FPN_Weights.DEFAULT)
+	
 	model_name = 'FasterRCNN_ResNet50'
-
+	
+	print('\n\n\n',model,'\n\n\n')
+	print('\n\n\n',model_name,'\n\n\n')
 	# 0 is background, all integers accumulation after represents class count
 	num_classes = num_classes+1
 
