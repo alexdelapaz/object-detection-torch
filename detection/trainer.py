@@ -10,6 +10,8 @@ import sys
 from detection import models
 
 # adding torchvision vision tools folder to import modules
+# path 1 is for github pull of repo
+# path 2 is for ipynb use in colab
 notebook_folders = ['vision/references/detection', '/content/drive/My Drive/Colab Notebooks/']
 for folder in notebook_folders:
     sys.path.append(folder)
