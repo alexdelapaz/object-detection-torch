@@ -1,24 +1,26 @@
 import pickle 
 import torch
-import utils
 from tqdm import tqdm
 import numpy as np
 import os
 import copy
 import sys
 
-from detection import models
 
-# adding torchvision vision tools folder to import modules
+# add torchvision vision tools folder to import modules
 # path 1 is for github pull of repo
 # path 2 is for ipynb use in colab
 notebook_folders = ['vision/references/detection', '/content/drive/My Drive/Colab Notebooks/']
 for folder in notebook_folders:
     sys.path.append(folder)
-
 #sys.path.insert(0, '/vision')
 
+# Import torchvision vision folder scripts from vision/references/detection
 from engine import evaluate
+import utils
+
+# import light training framework for torch
+from detection import models
 
 
 def fasterrcnn(model, model_path, data_loaders, epoch_count, freq_eval_save, lr=0.0001, opt='sgd'):

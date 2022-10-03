@@ -76,7 +76,7 @@ if __name__ == '__main__':
 	# The label directory for the dataset used
 	dir_coco = 'datasets/xView/labels/'
 	# The dataset used
-	dataset = 'container_ships'#'planes'
+	dataset = 'haul_trucks_synth'#'planes'
 
 
 	# Import and prepare dataset

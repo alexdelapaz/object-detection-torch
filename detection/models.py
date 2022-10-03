@@ -10,8 +10,6 @@ def load_fasterrcnn(num_classes):
 	
 	model_name = 'FasterRCNN_ResNet50'
 	
-	print('\n\n\n',model,'\n\n\n')
-	print('\n\n\n',model_name,'\n\n\n')
 	# 0 is background, all integers accumulation after represents class count
 	num_classes = num_classes+1
 
