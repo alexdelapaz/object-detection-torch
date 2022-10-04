@@ -16,7 +16,7 @@ from engine import train_one_epoch, evaluate
 import utils
 
 # import light training framework for torch
-from detection import data, models, trainer
+from detection import data, models, train
 
 
 # Define transforms function
@@ -59,7 +59,8 @@ if __name__ == '__main__':
     # The label directory for the dataset used
 	dir_coco = 'datasets/xView/labels/'
     # The dataset used
-	dataset = 'haul_trucks_synth'#'planes'
+	dataset = 'haul_trucks'#'planes'
+	dataset_synth = 'haul_trucks_synth'#'planes'
 
     # Import and prepare dataset
     # List[dict] is created from coco annotations to aggregate each annotation per image
@@ -73,8 +74,13 @@ if __name__ == '__main__':
 	coco_dataset_train = coco_dataset[:train_count] # [:2]#
 	coco_dataset_test = coco_dataset[-test_count:] # [-2:]#
 
+	# Merge Real and synthetic
+	coco_dataset_synth = data.load_coco_torchvision(dataset_synth, dir_coco)
+
+	coco_dataset_train_mix = data.merge_data(coco_dataset_train, coco_dataset_synth, annots_split={'real':10,'synth':90})
+
     # Create torch dataset object for coco annotations, subset of xView coco dataset is used for planes example
-	torchvision_ds_train = data.COCO_Dataset(coco_dataset_train, get_transform(train=True))
+	torchvision_ds_train = data.COCO_Dataset(coco_dataset_train_mix, get_transform(train=True))
 	torchvision_ds_test = data.COCO_Dataset(coco_dataset_test, get_transform(train=False))
 
 	# define training and validation data loaders
@@ -86,17 +92,13 @@ if __name__ == '__main__':
 		torchvision_ds_test, batch_size=1, shuffle=False, num_workers=2,
 		collate_fn=utils.collate_fn)
 
-    # Store train,test dataloaders in a tuple to pass to training function
-	loaders = (dl_train, dl_test)
-
-
 
 	model_path = '{}/{}'.format(DIR_OUT,EXP_NAME)
 	if not os.path.exists(model_path):
 		os.mkdir(model_path)
 
 	model_name, model = models.load_fasterrcnn(fasterrcnn_class_count)
-	model_save = model_path + os.sep + model_name
+	save_path = model_path + os.sep + model_name
 
 	print('------------------------------------------------------')
 	print('Training: {}'.format(model_name), end ='\n')
@@ -115,9 +117,7 @@ if __name__ == '__main__':
 	LR = float(args_passed['learning_rate'])
 	# Select optimizer, sgd or adam
 	OPT = args_passed['opt']
-	# If optimizer name sgd or adam is passed to -o cli arg, then it it passed to trainder.fasterrcnn
+
+	# If optimizer name sgd or adam is passed to -o cli arg, then it it passed to trainer.fasterrcnn
 	# Default optimizer without passing the argument name is sgd
-	if OPT:
-		trainer.fasterrcnn(model, model_save, loaders, EPOCHS, SAVE_FREQ, LR, OPT)
-	else:
-		trainer.fasterrcnn(model, model_save, loaders, EPOCHS, SAVE_FREQ, LR)
+	train.fasterrcnn(model, dl_train, dl_test, dl_test, OPT, LR, EPOCHS, SAVE_FREQ, save_path)

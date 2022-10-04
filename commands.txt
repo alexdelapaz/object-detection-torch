@@ -25,3 +25,10 @@ conda install -c conda-forge pycocotools
 python3 strategy_real.py -d 'artifacts' -n 'planes_sgd' -bs 4 -e 20 -s 5 -lr 0.005
 python3 analysis.py -d 'artifacts' -n 'planes_sgd'
 python3 detections.py -d 'artifacts' -n 'planes_sgd'
+
+bad strat
+python3 strategy_real.py -d 'artifacts' -n 'hault_trucks_synth_sgd' -bs 4 -e 20 -s 5 -lr 0.0001
+good strat
+python3 strategy_real.py -d 'artifacts' -n 'hault_trucks_synth_sgd_005' -bs 4 -e 30 -s 5 -lr 0.005python3 strategy_synth.py -d 'artifacts' -n 'hault_trucks_MIX_sgd_005' -bs 4 -e 2 -s 2 -lr 0.005
+mix
+python3 strategy_synth.py -d 'artifacts' -n 'hault_trucks_MIX_sgd_005' -bs 4 -e 2 -s 2 -lr 0.005

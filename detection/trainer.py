@@ -28,7 +28,6 @@ def fasterrcnn(model, model_path, data_loaders, epoch_count, freq_eval_save, lr=
     # Training info capture
     losses_train = []
     losses_val = []
-    losses_val_NEW = []
     eval_per_n_epoch = []
     best_model_weights = model.state_dict()
     current_epoch = 0
@@ -52,7 +51,6 @@ def fasterrcnn(model, model_path, data_loaders, epoch_count, freq_eval_save, lr=
         # Prior training run losses
         losses_train = model_info['losses_train']
         losses_val = model_info['losses_val']
-        losses_val_NEW = model_info['losses_val_NEW']
 
         # Prior lowest loss for training and validation
         lowest_train_loss = min(losses_train)
@@ -133,7 +131,7 @@ def fasterrcnn(model, model_path, data_loaders, epoch_count, freq_eval_save, lr=
         epoch_val_loss = np.mean(epoch_val_losses)
         losses_val.append(epoch_val_loss)
 
-
+        '''
         # Implementation of FasterRCNN in eval mode to calculate loss for validation
         # Perform foward pass, backpropagation, zero gradients
         # Calculate training loss for one eppoch, add training loss to total training loss and store in log
@@ -141,7 +139,7 @@ def fasterrcnn(model, model_path, data_loaders, epoch_count, freq_eval_save, lr=
             ### Validation ###
             epoch_val_loss = models.frcnn_evaluate_loss(model, val_loader, device)
             losses_val_NEW.append(epoch_val_loss)
-        
+        '''
 
 
         # Eval per freq_eval_save
@@ -173,7 +171,6 @@ def fasterrcnn(model, model_path, data_loaders, epoch_count, freq_eval_save, lr=
                       'least_val_loss': lowest_val_loss,
                       'losses_train': losses_train,
                       'losses_val': losses_val,
-                      'losses_val_NEW': losses_val_NEW,
                       'evals': eval_per_n_epoch}
 
         # Save the model information and best weights so far (from above val save) for each eval conducted
