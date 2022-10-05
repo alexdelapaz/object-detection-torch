@@ -33,7 +33,7 @@ def get_transform(train):
 if __name__ == '__main__':	
 	parser = argparse.ArgumentParser()
 	parser.add_argument('-d', '--dir_out', type = str, required=True, help='Save directory')
-	parser.add_argument('-n', '--exp_name', type = str, required=True, help='Experiment name')	
+	parser.add_argument('-n', '--strategy_name', type = str, required=True, help='Experiment name')	
 	parser.add_argument('-bs', '--batch_size', type = str, required=True, help='Train batch size')	
 	parser.add_argument('-e', '--epochs', type = str, required=True, help='Epoch count')	
 	parser.add_argument('-s', '--eval_freq', type = str, required=True, help='Eval frequency (also saves artifacts)')	
@@ -46,7 +46,7 @@ if __name__ == '__main__':
 	# Output directory name, default is artifacts
 	DIR_OUT = args_passed['dir_out']
     # Experiment name
-	EXP_NAME = args_passed['exp_name']
+	STRATEGY = args_passed['strategy_name']
 	# BATCH_SIZE = 4 works for most 12-16 gb cards, images used in example are 512x512 pixels
 	BATCH_SIZE = int(args_passed['batch_size'])
 
@@ -84,25 +84,46 @@ if __name__ == '__main__':
 	torchvision_ds_test = data.COCO_Dataset(coco_dataset_test, get_transform(train=False))
 
 	# define training and validation data loaders
-	dl_train = torch.utils.data.DataLoader(
+	loader_train = torch.utils.data.DataLoader(
 		torchvision_ds_train, batch_size=BATCH_SIZE, shuffle=True, num_workers=2,
 		collate_fn=utils.collate_fn)
 
-	dl_test = torch.utils.data.DataLoader(
+	loader_test = torch.utils.data.DataLoader(
 		torchvision_ds_test, batch_size=1, shuffle=False, num_workers=2,
 		collate_fn=utils.collate_fn)
 
+	# Training run save path, if path dne then create it
+	strategy_name = '{}/{}'.format(DIR_OUT,STRATEGY)
+	if not os.path.exists(strategy_name):
+		os.mkdir(strategy_name)
 
-	model_path = '{}/{}'.format(DIR_OUT,EXP_NAME)
-	if not os.path.exists(model_path):
-		os.mkdir(model_path)
+	# All training runs, if path dne then create it
+	state_per_epoch = '{}/{}'.format(model_path,'state_per_epoch')
+	if not os.path.exists():
+		os.mkdir(state_per_epoch)
 
+	# Load model and save model path within above training run path
 	model_name, model = models.load_fasterrcnn(fasterrcnn_class_count)
-	save_path = model_path + os.sep + model_name
+	save_path = strategy_name + os.sep + model_name
+
+	# Model checkpoint and per epoch checkpoints paths
+	checkpoints = {'save_path': save_path, 'state_per_epoch': state_per_epoch}
+
+    # Prior Model artifacts and training log, if they exist
+	epochs_trained = 0
+
+    if os.path.exists(save_path):
+        # Model artifacts and training log
+        checkpoint = torch.load(save_path)
+		epochs_trained = checkpoint['epochs_trained']
+
+        # Model weights
+        model.load_state_dict(checkpoint['state_optimum'])
 
 	print('------------------------------------------------------')
 	print('Training: {}'.format(model_name), end ='\n')
-	print('\nSaving {} artifacts to: {}'.format(EXP_NAME, model_path), end='\n')
+	print(f'\nPrevious training:\t\t{} epochs'.format(current_epoch))
+	print('\nSaving {} artifacts to: {}'.format(STRATEGY, model_path), end='\n')
 	print('------------------------------------------------------')
 
 	print('Data [Total count]:\t{}'.format(total_count))
@@ -120,4 +141,4 @@ if __name__ == '__main__':
 
 	# If optimizer name sgd or adam is passed to -o cli arg, then it it passed to trainer.fasterrcnn
 	# Default optimizer without passing the argument name is sgd
-	train.fasterrcnn(model, dl_train, dl_test, dl_test, OPT, LR, EPOCHS, SAVE_FREQ, save_path)
+	train.fasterrcnn(model, loader_train, loader_test, loader_test, OPT, LR, EPOCHS, checkpoints)

@@ -22,11 +22,14 @@ import utils
 # import light training framework for torch
 from detection import models
 
+def training_epoch():
 
+
+    
 def fasterrcnn(model, train_loader, val_loader, test_loader=None, opt=None, lr=None, epoch_count=None, freq_eval_save=None, save_path=None):
-    '''
+
     # Tracking training loop settings and artifacts
-    log_settings = ['epochs_trained', 'weights', 'losses_train']
+    log_settings = ['epochs_trained', 'state_optimum', 'losses_train']
 
     if val_loader is not None:
         log_settings.append('losses_val')
@@ -36,7 +39,7 @@ def fasterrcnn(model, train_loader, val_loader, test_loader=None, opt=None, lr=N
     log_training = {}
     for setting in log_settings:
         log_training[setting] = []
-    '''
+
 
 
     current_epoch = 0
@@ -53,7 +56,7 @@ def fasterrcnn(model, train_loader, val_loader, test_loader=None, opt=None, lr=N
         model_info = torch.load(save_path)
 
         # Model weights
-        best_model_weights = model_info['weights']
+        best_model_weights = model_info['state_optimum']
         model.load_state_dict(best_model_weights)
 
         # Prior training run epoch count
@@ -67,14 +70,8 @@ def fasterrcnn(model, train_loader, val_loader, test_loader=None, opt=None, lr=N
         lowest_train_loss = min(losses_train)
         lowest_val_loss = min(losses_val)
 
-        print(f'\nEpochs trained:\t\t{current_epoch}')
+        
     
-    # Define path to save out models over time
-    state_per_epoch = '/'.join(save_path.split('/')[:-1]) + '/state_per_epoch/'
-
-    if not os.path.exists(state_per_epoch):
-        os.mkdir(state_per_epoch)
-
 
     # Utilize GPU (if available) CPU otherwise
     device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
@@ -175,7 +172,7 @@ def fasterrcnn(model, train_loader, val_loader, test_loader=None, opt=None, lr=N
 
 
         # Model information
-        model_info = {'weights': best_model_weights,
+        checkpoint = {'state_optimum': best_model_weights,
                       'epochs_trained': epoch + 1,
                       'least_train_loss': lowest_train_loss,
                       'least_val_loss': lowest_val_loss,
@@ -184,13 +181,9 @@ def fasterrcnn(model, train_loader, val_loader, test_loader=None, opt=None, lr=N
                       'evals': eval_per_n_epoch}
 
 
-        # Save model state and artifacts after each run and most recent state
-        torch.save(model_info, save_path)
-        
-        model_path_eval = state_per_epoch + 'epoch {}'.format(epoch+1)
-        torch.save(model_info, model_path_eval)
-
+        torch.save(checkpoint, checkpoints['state_per_epoch'])
+        torch.save(checkpoint, checkpoints['save_path'])
         # Save model state in torchscript format for inference 
         torch.save(model, save_path+'.pt')
     
-    return losses_train
+    return
