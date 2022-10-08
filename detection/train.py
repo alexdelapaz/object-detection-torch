@@ -6,7 +6,6 @@ import os
 import copy
 import sys
 
-
 # add torchvision vision tools folder to import modules
 # path 1 is for github pull of repo
 # path 2 is for ipynb use in colab
