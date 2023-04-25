@@ -59,7 +59,7 @@ if __name__ == '__main__':
     # The label directory for the dataset used
 	dir_coco = 'datasets/xView/labels/'
     # The dataset used
-	dataset = 'haul_trucks'#'planes'
+	dataset = 'planes'
 
     # Import and prepare dataset
     # List[dict] is created from coco annotations to aggregate each annotation per image
