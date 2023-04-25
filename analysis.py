@@ -37,11 +37,11 @@ def run_analysis(artifacts_path):
       losses_val = model_info['losses_val']
       print('Validation loss:\t{}'.format(losses_val), end ='\n\n')
 
-
-      
+      # Used to test modified FasterRCNN validation loss
+      '''
       losses_val_NEW = model_info['losses_val_NEW']
       print('Validation loss:\t{}'.format(losses_val), end ='\n\n')
-      
+      '''
 
 
 
@@ -53,11 +53,11 @@ def run_analysis(artifacts_path):
       lowest_val_loss = min(losses_val)
       print('Lowest Validation loss:\t{}'.format(lowest_val_loss), end ='\n\n')
 
-
-      
+      # Used to test modified FasterRCNN validation loss
+      '''
       lowest_val_loss = min(losses_val_NEW)
       print('Lowest Validation loss NEW:\t{}'.format(lowest_val_loss), end ='\n\n')
-      
+      '''
 
 
       try:
