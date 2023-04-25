@@ -55,7 +55,7 @@ if __name__ == '__main__':
 	test_percent = 20
 
     # Select the class count, planes has 3 classes, will be passed to create background 0 + 1,2,3 in category ids for mlp head
-	fasterrcnn_class_count = 1
+	fasterrcnn_class_count = 3
     # The label directory for the dataset used
 	dir_coco = 'datasets/xView/labels/'
     # The dataset used
